@@ -9,5 +9,6 @@ abstract class AppColorsSmartBudget {
   static const Color colorBlack = Color(0xff000000);
   static const Color colorWhite = Color(0xffFFFFFF);
   static const Color color878FC1 = Color(0xff878FC1);
+  static const Color color7F878FC0 = Color(0x7F878FC0);
   static const Color color5883FF = Color(0xff5883FF);
 }

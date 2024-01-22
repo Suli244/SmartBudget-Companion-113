@@ -43,38 +43,30 @@ class _SplashScreenState extends State<SplashScreen> {
 
   toStartOnBoar() async {
     await Future.delayed(const Duration(milliseconds: 1450));
-    // final isFirst = await FirstOpenSmartBudget.getFirstOpen();
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SmartBudgetScreen(),
-      ),
-    );
-
-    // if (!isFirst) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const OnboardingScreen(),
-    //     ),
-    //   );
-    //   await Future.delayed(const Duration(seconds: 8));
-    //   try {
-    //     final InAppReview inAppReview = InAppReview.instance;
-    //     if (await inAppReview.isAvailable()) {
-    //       inAppReview.requestReview();
-    //     }
-    //   } catch (e) {
-    //     throw Exception(e);
-    //   }
-    // } else {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const SmartBudgetScreen(),
-    //     ),
-    //   );
-    // }
+    final isFirst = await FirstOpenSmartBudget.getFirstOpen();
+    if (!isFirst) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OnboardingScreen(),
+        ),
+      );
+      await Future.delayed(const Duration(seconds: 8));
+      try {
+        final InAppReview inAppReview = InAppReview.instance;
+        if (await inAppReview.isAvailable()) {
+          inAppReview.requestReview();
+        }
+      } catch (e) {
+        throw Exception(e);
+      }
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SmartBudgetScreen(),
+        ),
+      );
+    }
   }
 }

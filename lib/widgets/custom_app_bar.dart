@@ -12,7 +12,7 @@ class CustomAppBarSmartBudget extends StatelessWidget
     this.actions,
     this.iconColor,
     Key? key,
-    this.titleTextStyle,
+    this.titleTextStyle, this.backColor,
   }) : super(key: key);
   final String? title;
   final Widget? icon;
@@ -21,6 +21,7 @@ class CustomAppBarSmartBudget extends StatelessWidget
   final List<Widget>? actions;
   final TextStyle? titleTextStyle;
   final Color? iconColor;
+  final Color? backColor;
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
@@ -30,7 +31,7 @@ class CustomAppBarSmartBudget extends StatelessWidget
       title: titleWidget ?? Text(title ?? ''),
       titleTextStyle: titleTextStyle ??
           AppTextStylesSmartBudget.s21W600(color: Colors.white),
-      backgroundColor: AppColorsSmartBudget.color2C2F42,
+      backgroundColor: backColor ?? AppColorsSmartBudget.color2C2F42,
       elevation: 0,
       centerTitle: centerTitle,
       iconTheme: IconThemeData(

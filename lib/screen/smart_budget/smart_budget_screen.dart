@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_budget_companion_113/style/app_text_styles.dart';
+import 'package:smart_budget_companion_113/screen/settings/settings.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 
@@ -22,7 +22,14 @@ class SmartBudgetScreen extends StatelessWidget {
         ),
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Settings(),
+                ),
+              );
+            },
             child: Image.asset(
               AppImages.settingsIcon,
               width: 28,
