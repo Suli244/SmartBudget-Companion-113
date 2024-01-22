@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 
@@ -34,7 +33,17 @@ class SmartBudgetScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(),
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(20),
+            child: const Text('Your daily budget - 50\$'),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(20),
+            child: const Text('Spendings'),
+          ),
         ],
       ),
     );
