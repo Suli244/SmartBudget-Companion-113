@@ -12,6 +12,8 @@ class AppImages {
   static const String cardBgIcon = 'assets/images/card_bg_icon.png';  
   static const String checkMarkIcon = 'assets/images/check_mark_icon.png';  
   static const String clearIcon = 'assets/images/clear_icon.png';  
+  static const String dialogBgImage = 'assets/images/dialog_bg_image.png';  
+  static const String dialogBgLine = 'assets/images/dialog_bg_line.png';  
   static const String icon = 'assets/images/icon.png';  
   static const String logoApp = 'assets/images/logo_app.png';  
   static const String onboardingOne = 'assets/images/onboarding_one.png';  

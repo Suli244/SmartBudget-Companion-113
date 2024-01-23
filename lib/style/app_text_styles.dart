@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const fonst = 'Gilroy-Light';
+const fonst = 'Gilroy-Medium';
 
 abstract class AppTextStylesSmartBudget {
   static TextStyle s10Wbold({Color? color}) => TextStyle(
@@ -33,7 +33,7 @@ abstract class AppTextStylesSmartBudget {
         fontSize: 30,
         fontWeight: FontWeight.w800,
       );
-  static TextStyle s24W700({Color? color,String? fontFamily}) => TextStyle(
+  static TextStyle s24W700({Color? color, String? fontFamily}) => TextStyle(
         fontFamily: fontFamily ?? fonst,
         color: color ?? Colors.black,
         fontSize: 24,
