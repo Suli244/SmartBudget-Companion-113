@@ -77,8 +77,14 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
               child: Container(
                 width: context.width,
                 decoration: BoxDecoration(
-                  color: AppColorsSmartBudget.color5D87FF,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(24),
+                  image: const DecorationImage(
+                    image: AssetImage(
+                      AppImages.cardBgImage,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 padding: const EdgeInsets.all(24),
                 child: Column(

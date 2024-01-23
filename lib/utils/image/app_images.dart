@@ -10,6 +10,7 @@ class AppImages {
   
   static const String cIcon = 'assets/images/c_icon.png';  
   static const String cardBgIcon = 'assets/images/card_bg_icon.png';  
+  static const String cardBgImage = 'assets/images/card_bg_image.png';  
   static const String checkMarkIcon = 'assets/images/check_mark_icon.png';  
   static const String clearIcon = 'assets/images/clear_icon.png';  
   static const String dialogBgImage = 'assets/images/dialog_bg_image.png';  
