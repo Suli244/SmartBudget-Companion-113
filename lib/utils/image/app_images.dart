@@ -17,7 +17,7 @@ class AppImages {
   static const String icon = 'assets/images/icon.png';  
   static const String logoApp = 'assets/images/logo_app.png';  
   static const String onboardingOne = 'assets/images/onboarding_one.png';  
-  static const String onboardingThree = 'assets/images/onboarding_three.png';  
+  static const String onboardingTrhee = 'assets/images/onboarding_trhee.png';  
   static const String onboardingTwo = 'assets/images/onboarding_two.png';  
   static const String settingsIcon = 'assets/images/settings_icon.png';  
   static const String splashLogo = 'assets/images/splash_logo.png';  

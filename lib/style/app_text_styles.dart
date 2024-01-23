@@ -33,10 +33,14 @@ abstract class AppTextStylesSmartBudget {
         fontSize: 30,
         fontWeight: FontWeight.w800,
       );
-  static TextStyle s24W700({Color? color, String? fontFamily}) => TextStyle(
-        fontFamily: fontFamily ?? fonst,
+  static TextStyle s24W700({Color? color}) => TextStyle(
         color: color ?? Colors.black,
         fontSize: 24,
+        fontWeight: FontWeight.w700,
+      );
+  static TextStyle s22W700({Color? color}) => TextStyle(
+        color: color ?? Colors.black,
+        fontSize: 22,
         fontWeight: FontWeight.w700,
       );
   static TextStyle s15W700({Color? color}) => TextStyle(
@@ -50,6 +54,12 @@ abstract class AppTextStylesSmartBudget {
         color: color ?? Colors.black,
         fontSize: 16,
         fontWeight: FontWeight.w700,
+      );
+  static TextStyle s17Wbold({Color? color}) => TextStyle(
+        fontFamily: fonst,
+        color: color ?? Colors.black,
+        fontSize: 17,
+        fontWeight: FontWeight.bold,
       );
   static TextStyle s12W500({Color? color}) => TextStyle(
         fontFamily: fonst,
@@ -74,5 +84,11 @@ abstract class AppTextStylesSmartBudget {
         color: color ?? Colors.black,
         fontSize: 16,
         fontWeight: FontWeight.w400,
+      );
+  static TextStyle s16W600({Color? color}) => TextStyle(
+        fontFamily: fonst,
+        color: color ?? Colors.black,
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
       );
 }
