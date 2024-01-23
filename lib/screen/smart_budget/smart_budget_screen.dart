@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smart_budget_companion_113/model/hive_helper.dart';
+import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/daily_budget_screen.dart';
 import 'package:smart_budget_companion_113/screen/settings/settings.dart';
-import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_error_dialog.dart';
+import 'package:smart_budget_companion_113/screen/spendings/spendings_page.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
@@ -21,9 +25,24 @@ class SmartBudgetScreen extends StatefulWidget {
 class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
   String currancy = '';
 
+  SpendingModel? model;
+
   getCurrancy() async {
     currancy = await CurrancySmartBudget.getCurrancy();
+    HiveHelper.getBla().then((value) {
+      model = value;
+
+      currancy = minusStrings('1500', value?.amount ?? '0');
+    });
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    //TODO: check tommorow for error success
+    // showErrorDialog(context);
+    // showSuccessDialog(context);
   }
 
   @override
@@ -100,7 +119,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '${currancy}1 500 for 30 days',
+                        '$currancy for 30 days',
                         style: AppTextStylesSmartBudget.s12W500(
                           color: AppColorsSmartBudget.color5AE2A0,
                         ),
@@ -110,7 +129,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                     Row(
                       children: [
                         Text(
-                          '${currancy}50',
+                          '${model?.amount}',
                           style: AppTextStylesSmartBudget.s40W700(
                             color: Colors.white,
                           ),
@@ -136,7 +155,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Your daily budget - 50$currancy',
+                      'Your daily budget - ${1500 / 30}',
                       style: AppTextStylesSmartBudget.s20W500(
                         color: Colors.white,
                       ),
@@ -155,7 +174,59 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
             const SizedBox(height: 12),
             GestureDetector(
               onTap: () {
-                showErrorDialog(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SpendingPage()),
+                ).then(
+                  (actualModel) {
+                    if (actualModel != null) {
+                      final snackBar = SnackBar(
+                        duration: const Duration(seconds: 5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        margin: const EdgeInsets.only(
+                          bottom: 50,
+                          right: 20,
+                          left: 20,
+                        ),
+                        backgroundColor: Colors.white,
+                        behavior: SnackBarBehavior.floating,
+                        content: Row(
+                          children: [
+                            Image.asset(
+                              AppImages.walletIcon,
+                              scale: 4,
+                            ),
+                            const SizedBox(width: 12),
+                            Text(
+                              'Your expense added',
+                              style: AppTextStylesSmartBudget.s16W400(),
+                            ),
+                          ],
+                        ),
+                        action: SnackBarAction(
+                          textColor: const Color(0xff5883FF),
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(snackBar)
+                          .closed
+                          .then((value) {
+                        if (value != SnackBarClosedReason.action) {
+                          HiveHelper.addBla(actualModel);
+                          log('data: 1 ');
+                        } else {
+                          log('data: 2 ');
+                        }
+                      });
+                    }
+                  },
+                );
               },
               child: Container(
                 width: context.width,

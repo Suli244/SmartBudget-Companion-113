@@ -21,7 +21,7 @@ class KeyBoardWidget extends StatelessWidget {
   final Function() onClearAll;
   final Function(String number) onTapNumber;
   final Function() onDone;
-
+  
   final bool isAllNorm;
   final bool isDay;
 
