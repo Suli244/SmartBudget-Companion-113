@@ -7,13 +7,28 @@ import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_erro
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
+import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 import 'package:smart_budget_companion_113/widgets/spaces.dart';
 
-class SmartBudgetScreen extends StatelessWidget {
+class SmartBudgetScreen extends StatefulWidget {
   const SmartBudgetScreen({super.key});
+
+  @override
+  State<SmartBudgetScreen> createState() => _SmartBudgetScreenState();
+}
+
+class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
+  String currancy = '';
+
+  getCurrancy() async {
+    currancy = await CurrancySmartBudget.getCurrancy();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    getCurrancy();
     return Scaffold(
       appBar: CustomAppBarSmartBudget(
         title: 'Smart budget',
@@ -28,13 +43,14 @@ class SmartBudgetScreen extends StatelessWidget {
         ),
         actions: [
           InkWell(
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const Settings(),
                 ),
               );
+              setState(() {});
             },
             child: Image.asset(
               AppImages.settingsIcon,
@@ -78,7 +94,7 @@ class SmartBudgetScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '\$1 500 for 30 days',
+                        '${currancy}1 500 for 30 days',
                         style: AppTextStylesSmartBudget.s12W500(
                           color: AppColorsSmartBudget.color5AE2A0,
                         ),
@@ -88,7 +104,7 @@ class SmartBudgetScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '\$50',
+                          '${currancy}50',
                           style: AppTextStylesSmartBudget.s40W700(
                             color: Colors.white,
                           ),
@@ -104,7 +120,7 @@ class SmartBudgetScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
-                            '-\$0',
+                            '-${currancy}0',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: Colors.white,
                             ),
@@ -114,7 +130,7 @@ class SmartBudgetScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Your daily budget - 50\$',
+                      'Your daily budget - 50$currancy',
                       style: AppTextStylesSmartBudget.s20W500(
                         color: Colors.white,
                       ),

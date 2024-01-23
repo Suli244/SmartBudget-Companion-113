@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
+import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
 import 'package:smart_budget_companion_113/utils/urls.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
@@ -16,10 +17,16 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  String ind = '1';
+  String currancy = '';
+
+  getCurrancy() async {
+    currancy = await CurrancySmartBudget.getCurrancy();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
+    getCurrancy();
     return Scaffold(
       appBar: CustomAppBarSmartBudget(
         icon: InkWell(
@@ -41,12 +48,13 @@ class _SettingsState extends State<Settings> {
             Row(
               children: [
                 CustomButtonSmartBudget(
-                  color: ind == '1'
+                  color: currancy == '\$'
                       ? AppColorsSmartBudget.color5883FF
                       : AppColorsSmartBudget.color2C2F42,
                   onPress: () {
-                    ind = '1';
+                    currancy = '\$';
                     setState(() {});
+                    CurrancySmartBudget.setCurrancy('\$');
                   },
                   text: 'USD',
                   width: 160.w,
@@ -60,14 +68,15 @@ class _SettingsState extends State<Settings> {
                 ),
                 const Spacer(),
                 CustomButtonSmartBudget(
-                  color: ind == '2'
+                  color: currancy == '€'
                       ? AppColorsSmartBudget.color5883FF
                       : AppColorsSmartBudget.color2C2F42,
                   colorBorder: AppColorsSmartBudget.color5883FF,
                   widthBorder: 2,
                   onPress: () {
-                    ind = '2';
+                    currancy = '€';
                     setState(() {});
+                    CurrancySmartBudget.setCurrancy('€');
                   },
                   text: 'EUR',
                   width: 160.w,
