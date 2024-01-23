@@ -41,7 +41,17 @@ class SmartBudgetScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(),
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(20),
+            child: const Text('Your daily budget - 50\$'),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(20),
+            child: const Text('Spendings'),
+          ),
         ],
       ),
     );
