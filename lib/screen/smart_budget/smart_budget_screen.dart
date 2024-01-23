@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/daily_budget_screen.dart';
-import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_success_dialog.dart';
+import 'package:smart_budget_companion_113/screen/settings/settings.dart';
+import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_error_dialog.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
-import 'package:smart_budget_companion_113/screen/settings/settings.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 import 'package:smart_budget_companion_113/widgets/spaces.dart';
@@ -133,7 +133,7 @@ class SmartBudgetScreen extends StatelessWidget {
             const SizedBox(height: 12),
             GestureDetector(
               onTap: () {
-                showSuccessDialog(context);
+                showErrorDialog(context);
               },
               child: Container(
                 width: context.width,

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 
-showSuccessDialog(BuildContext context) {
+showErrorDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -28,7 +27,8 @@ showSuccessDialog(BuildContext context) {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Keep up the good work!',
+                        'You have exceeded the daily limit. Please try to save for today!',
+                        textAlign: TextAlign.center,
                         style: AppTextStylesSmartBudget.s20W500(
                           color: Colors.white,
                         ),
@@ -80,31 +80,12 @@ showSuccessDialog(BuildContext context) {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            '\$20',
+                            '-\$110',
                             style: AppTextStylesSmartBudget.s40W700(
-                              color: AppColorsSmartBudget.color5AE2A0,
+                              color: AppColorsSmartBudget.colorFD5353,
                             ),
                           ),
                         ],
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Yesterday, you saved',
-                            style: AppTextStylesSmartBudget.s16W400(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 24.h),
-                      Text(
-                        'We hope you had a great day!',
-                        style: AppTextStylesSmartBudget.s16W700(
-                          color: Colors.white,
-                        ),
                       ),
                     ],
                   ),
@@ -119,7 +100,7 @@ showSuccessDialog(BuildContext context) {
             onPress: () {
               Navigator.pop(context);
             },
-            text: 'Great!',
+            text: 'Ok',
           ),
         ],
       ),
