@@ -125,7 +125,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                               color: Colors.white,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                     const SizedBox(height: 8),

@@ -13,12 +13,14 @@ class KeyBoardWidget extends StatelessWidget {
     required this.onClearOne,
     required this.onClearAll,
     required this.onTapNumber,
+    required this.onDone,
     this.isAllNorm = false,
     this.isDay = false,
   });
   final Function() onClearOne;
   final Function() onClearAll;
   final Function(String number) onTapNumber;
+  final Function() onDone;
 
   final bool isAllNorm;
   final bool isDay;
@@ -139,7 +141,8 @@ class KeyBoardWidget extends StatelessWidget {
                 children: [
                   const SizedBox(width: 8),
                   DoneContainerWidget(
-                    onDone: () {},
+                    isAllNorm: isAllNorm,
+                    onDone: onDone,
                   ),
                 ],
               ),

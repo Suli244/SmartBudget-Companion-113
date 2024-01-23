@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/widgets/key_board_widget.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
+import 'package:smart_budget_companion_113/utils/premium/amount.dart';
+import 'package:smart_budget_companion_113/utils/premium/days.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 
 class DailyBudgetScreen extends StatefulWidget {
@@ -24,6 +26,28 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
   bool isDayLess1 = false;
   bool isDayMore45 = false;
 
+  bool get isAllNorm =>
+      amountController.text.isNotEmpty &&
+      daysController.text.isNotEmpty &&
+      !isLess100 &&
+      !isMore100000 &&
+      !isDayLess1 &&
+      !isDayMore45;
+
+  getDefaultData() async {
+    final savedAmount = await AmountSmartBudget.getAmount();
+    final savedDays = await DaysSmartBudget.getDays();
+    amountController.text = formatNumber(savedAmount);
+    daysController.text = savedDays.toString();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getDefaultData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +61,21 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
         title: 'Daily budget',
         iconColor: AppColorsSmartBudget.color5D87FF,
         actions: [
-          Icon(
-            Icons.check,
-            color: AppColorsSmartBudget.color878FC1.withOpacity(0.5),
-            size: 30,
+          GestureDetector(
+            onTap: () async {
+              await AmountSmartBudget.setAmount(
+                int.parse(amountController.text.replaceAll(' ', '')),
+              );
+              await DaysSmartBudget.setDays(
+                int.parse(daysController.text.replaceAll(' ', '')),
+              );
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.check,
+              color: AppColorsSmartBudget.color878FC1.withOpacity(0.5),
+              size: 30,
+            ),
           ),
           const SizedBox(width: 24),
         ],
@@ -201,6 +236,16 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
             if (amountFocused || daysFocused)
               KeyBoardWidget(
                 isDay: daysFocused,
+                isAllNorm: isAllNorm,
+                onDone: () async {
+                  await AmountSmartBudget.setAmount(
+                    int.parse(amountController.text.replaceAll(' ', '')),
+                  );
+                  await DaysSmartBudget.setDays(
+                    int.parse(daysController.text.replaceAll(' ', '')),
+                  );
+                  Navigator.pop(context);
+                },
                 onClearOne: () {
                   if (amountFocused) {
                     amountController.text = amountController.text
@@ -336,7 +381,7 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
 
   String calculate(String amount, String days) {
     double result = 0;
-    double amountINT = double.tryParse(amount) ?? 0;
+    double amountINT = double.tryParse(amount.replaceAll(' ', '')) ?? 0;
     double daysINT = int.parse(days.isNotEmpty ? days : '0') == 0
         ? 1
         : double.tryParse(days) ?? 1;
