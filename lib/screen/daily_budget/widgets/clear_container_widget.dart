@@ -8,10 +8,12 @@ class ClearConteiner extends StatelessWidget {
     super.key,
     required this.onTapClear,
     required this.child,
+    this.height,
   });
 
   final Function() onTapClear;
   final Widget child;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class ClearConteiner extends StatelessWidget {
         onPressed: onTapClear,
         child: Container(
           alignment: Alignment.center,
-          height: 72,
+          height: height ?? 72,
           width: context.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
