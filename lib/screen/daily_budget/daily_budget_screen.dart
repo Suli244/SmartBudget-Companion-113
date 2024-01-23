@@ -63,13 +63,15 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
         actions: [
           GestureDetector(
             onTap: () async {
-              await AmountSmartBudget.setAmount(
-                int.parse(amountController.text.replaceAll(' ', '')),
-              );
-              await DaysSmartBudget.setDays(
-                int.parse(daysController.text.replaceAll(' ', '')),
-              );
-              Navigator.pop(context);
+              if (isAllNorm) {
+                await AmountSmartBudget.setAmount(
+                  int.parse(amountController.text.replaceAll(' ', '')),
+                );
+                await DaysSmartBudget.setDays(
+                  int.parse(daysController.text.replaceAll(' ', '')),
+                );
+                Navigator.pop(context);
+              }
             },
             child: Icon(
               Icons.check,
@@ -122,6 +124,8 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
                 setState(() {});
               },
               child: TextFormField(
+                showCursor: true,
+                readOnly: true,
                 autofocus: amountFocused,
                 keyboardType: TextInputType.number,
                 controller: amountController,
@@ -196,6 +200,8 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
                 setState(() {});
               },
               child: TextFormField(
+                showCursor: true,
+                readOnly: true,
                 autofocus: daysFocused,
                 keyboardType: TextInputType.number,
                 controller: daysController,
