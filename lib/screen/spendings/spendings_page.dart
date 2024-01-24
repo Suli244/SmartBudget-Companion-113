@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -50,33 +48,21 @@ class _SpendingPageState extends State<SpendingPage> {
           ),
         ),
         actions: [
-          ValueListenableBuilder(
-            valueListenable: isHideDot,
-            builder: (_, __, child) {
-              return IconButton(
-                onPressed: () {
-                  log('data: model?.amount: ${model?.amount} ');
-                  String amountNow = addStrings(
-                    model?.amount ?? '0',
-                    amountController.text,
-                  );
-                  final time = DateTime.now();
-                  if (isHideDot.value) {
-                    final actualModel = SpendingModel(
-                      amount: amountNow,
-                      date: DateFormat('yyyy-MM-dd').format(time),
-                    );
-                    Navigator.pop(context, actualModel);
-                  }
-                },
-                icon: Icon(
-                  Icons.check,
-                  color: isHideDot.value
-                      ? AppColorsSmartBudget.color5D87FF
-                      : AppColorsSmartBudget.color5D87FF.withOpacity(0.5),
-                ),
+          IconButton(
+            onPressed: () {
+              String amountNow = addStrings(
+                model?.amount ?? '0',
+                amountController.text,
               );
+              final time = DateTime.now();
+              final actualModel = SpendingModel(
+                amount: amountNow,
+                date: DateFormat('yyyy-MM-dd').format(time),
+              );
+              Navigator.pop(context, actualModel);
             },
+            icon: const Icon(Icons.check,
+                color: AppColorsSmartBudget.color5D87FF),
           ),
         ],
       ),
@@ -192,6 +178,7 @@ String addStrings(String amountNow, String amountLast) {
   String resultString = result.toString();
   return resultString;
 }
+
 String minusStrings(String amountNow, String amountLast) {
   double intAmountNow = double.tryParse(amountNow) ?? 0;
   double intAmountLast = double.tryParse(amountLast) ?? 0;
@@ -206,8 +193,9 @@ bool inputValidate({
 }) {
   final result = double.tryParse(textController.text);
   if (textController.text.isNotEmpty &&
-      textController.text[0] != '.' &&
-      !textController.text[textController.text.length - 1].contains('.')) {
+      !textController.text.startsWith('.') &&
+      !textController.text.endsWith('.') &&
+      !textController.text.contains('.')) {
     if (result != null && result > 0) {
       isHideDot.value = true;
     } else {

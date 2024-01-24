@@ -10,13 +10,20 @@ class HiveHelper<T> {
     final box = Hive.isBoxOpen(boxName)
         ? Hive.box<SpendingModel>(boxName)
         : await Hive.openBox<SpendingModel>(boxName);
-    box.putAt(0, model);
+    box.put(boxName, model);
   }
 
   static Future<SpendingModel?> getBla() async {
     final box = Hive.isBoxOpen(boxName)
         ? Hive.box<SpendingModel>(boxName)
         : await Hive.openBox<SpendingModel>(boxName);
-    return box.getAt(0);
+    return box.get(boxName);
+  }
+
+  static Future<void> clear() async {
+    final box = Hive.isBoxOpen(boxName)
+        ? Hive.box<SpendingModel>(boxName)
+        : await Hive.openBox<SpendingModel>(boxName);
+    box.clear();
   }
 }
