@@ -109,15 +109,16 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
-            ElevatedButton(
-              child: const Text('Button label'),
-              onPressed: () async {
-                log('data: currancy: $currancy ');
+            //TODO: clear local data bases
+            // ElevatedButton(
+            //   child: const Text('Button label'),
+            //   onPressed: () async {
+            //     log('data: currancy: $currancy ');
 
-                DaysSmartBudget.clear(days);
-                await HiveHelper.clear();
-              },
-            ),
+            //     DaysSmartBudget.clear(days);
+            //     await HiveHelper.clear();
+            //   },
+            // ),
             GestureDetector(
               onTap: () {
                 Navigator.push(
