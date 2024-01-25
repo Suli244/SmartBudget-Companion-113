@@ -10,4 +10,9 @@ class DaysSmartBudget {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt('days', days);
   }
+
+  static Future<void> clear(int days) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 }

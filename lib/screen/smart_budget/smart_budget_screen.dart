@@ -1,14 +1,22 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:smart_budget_companion_113/model/hive_helper.dart';
+import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/daily_budget_screen.dart';
 import 'package:smart_budget_companion_113/screen/settings/settings.dart';
 import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_error_dialog.dart';
 import 'package:smart_budget_companion_113/screen/statisctics/statistics_page.dart';
+import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_success_dialog.dart';
+import 'package:smart_budget_companion_113/screen/spendings/spendings_page.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
-import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
+import 'package:smart_budget_companion_113/utils/premium/amount.dart';
+import 'package:smart_budget_companion_113/utils/premium/days.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 import 'package:smart_budget_companion_113/widgets/spaces.dart';
 
@@ -20,16 +28,53 @@ class SmartBudgetScreen extends StatefulWidget {
 }
 
 class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
-  String currancy = '';
+  int currancy = 0;
+  int days = 0;
+
+  SpendingModel? model;
+  final time = DateTime.now();
 
   getCurrancy() async {
-    currancy = await CurrancySmartBudget.getCurrancy();
+    currancy = await AmountSmartBudget.getAmount();
+    days = await DaysSmartBudget.getDays();
+    getData();
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+    var currentAmount = currancy.toDouble() / days;
+    HiveHelper.getBla().then((value) {
+      if (value != null) {
+        log('data: : ${value.date != DateFormat('yyyy-MM-dd').format(time)} ');
+        log('data: value.date: ${value.date} ');
+        log('data: DateFormaformat(time): ${DateFormat('yyyy-MM-dd').format(time)} ');
+        if (value.date != DateFormat('yyyy-MM-dd').format(time)) {
+          showSuccessDialog(
+            context,
+            model: HellShow(
+              dailyBudget: currancy / days,
+              spent: double.parse(value.amount),
+            ),
+          );
+        }
+      }
+    });
+  }
+
+  getData() {
+    HiveHelper.getBla().then((value) {
+      model = value;
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     getCurrancy();
+    // log('data: currancy: $currancy ');
     return Scaffold(
       appBar: CustomAppBarSmartBudget(
         title: 'Smart budget',
@@ -71,6 +116,16 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
+            //TODO: clear local data bases
+            // ElevatedButton(
+            //   child: const Text('Button label'),
+            //   onPressed: () async {
+            //     log('data: currancy: $currancy ');
+
+            //     DaysSmartBudget.clear(days);
+            //     await HiveHelper.clear();
+            //   },
+            // ),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -106,7 +161,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '${currancy}1 500 for 30 days',
+                        '\$$currancy for 30 days',
                         style: AppTextStylesSmartBudget.s12W500(
                           color: AppColorsSmartBudget.color5AE2A0,
                         ),
@@ -116,7 +171,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                     Row(
                       children: [
                         Text(
-                          '${currancy}50',
+                          '\$${(currancy / days) - double.parse(model?.amount ?? '0').toInt()}',
                           style: AppTextStylesSmartBudget.s40W700(
                             color: Colors.white,
                           ),
@@ -132,7 +187,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
-                            '-${currancy}0',
+                            '-\$${model?.amount ?? 0}',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: Colors.white,
                             ),
@@ -142,7 +197,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Your daily budget - 50$currancy',
+                      'Your daily budget - ${currancy / days}\$',
                       style: AppTextStylesSmartBudget.s20W500(
                         color: Colors.white,
                       ),
@@ -161,7 +216,59 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
             const SizedBox(height: 12),
             GestureDetector(
               onTap: () {
-                showErrorDialog(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SpendingPage()),
+                ).then(
+                  (actualModel) {
+                    if (actualModel != null) {
+                      final snackBar = SnackBar(
+                        duration: const Duration(seconds: 5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        margin: const EdgeInsets.only(
+                          bottom: 50,
+                          right: 20,
+                          left: 20,
+                        ),
+                        backgroundColor: Colors.white,
+                        behavior: SnackBarBehavior.floating,
+                        content: Row(
+                          children: [
+                            Image.asset(
+                              AppImages.walletIcon,
+                              scale: 4,
+                            ),
+                            const SizedBox(width: 12),
+                            Text(
+                              'Your expense added',
+                              style: AppTextStylesSmartBudget.s16W400(),
+                            ),
+                          ],
+                        ),
+                        action: SnackBarAction(
+                          textColor: const Color(0xff5883FF),
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(snackBar)
+                          .closed
+                          .then((value) {
+                        if (value != SnackBarClosedReason.action) {
+                          HiveHelper.addBla(actualModel);
+                          getData();
+                        } else {
+                          log('data: 2 ');
+                        }
+                      });
+                    }
+                  },
+                );
               },
               child: Container(
                 width: context.width,
@@ -195,4 +302,13 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
       ),
     );
   }
+}
+
+class HellShow {
+  double dailyBudget;
+  double spent;
+  HellShow({
+    required this.dailyBudget,
+    required this.spent,
+  });
 }

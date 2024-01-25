@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:smart_budget_companion_113/model/hive_helper.dart';
+import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
+import 'package:smart_budget_companion_113/screen/smart_budget/smart_budget_screen.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 
-showSuccessDialog(BuildContext context) {
-  showDialog(
+dynamic showSuccessDialog(BuildContext context, {required HellShow model}) {
+  return showDialog(
     context: context,
     builder: (context) => AlertDialog(
       shadowColor: Colors.transparent,
@@ -22,8 +26,10 @@ showSuccessDialog(BuildContext context) {
               children: [
                 Image.asset(AppImages.dialogBgImage),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 24,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -47,7 +53,7 @@ showSuccessDialog(BuildContext context) {
                             ),
                           ),
                           Text(
-                            '\$50',
+                            '\$${model.dailyBudget.toInt()}',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: Colors.white,
                             ),
@@ -66,7 +72,7 @@ showSuccessDialog(BuildContext context) {
                             ),
                           ),
                           Text(
-                            '\$50',
+                            '\$${model.spent.toInt()}',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: AppColorsSmartBudget.colorFD5353,
                             ),
@@ -80,9 +86,12 @@ showSuccessDialog(BuildContext context) {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            '\$20',
+                            '\$${(model.dailyBudget - model.spent).toInt()}',
                             style: AppTextStylesSmartBudget.s40W700(
-                              color: AppColorsSmartBudget.color5AE2A0,
+                              color:
+                                  (model.dailyBudget - model.spent).toInt() < 0
+                                      ? Colors.red
+                                      : AppColorsSmartBudget.color5AE2A0,
                             ),
                           ),
                         ],
@@ -118,6 +127,13 @@ showSuccessDialog(BuildContext context) {
             color: AppColorsSmartBudget.color5D87FF,
             onPress: () {
               Navigator.pop(context);
+              final time = DateTime.now();
+              HiveHelper.addBla(
+                SpendingModel(
+                  amount: '0',
+                  date: DateFormat('yyyy-MM-dd').format(time),
+                ),
+              );
             },
             text: 'Great!',
           ),
