@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/model/hive_helper.dart';
+import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
+import 'package:smart_budget_companion_113/utils/premium/amount.dart';
+import 'package:smart_budget_companion_113/utils/premium/days.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 
-class StatisticsPage extends StatelessWidget {
+class StatisticsPage extends StatefulWidget {
   const StatisticsPage({super.key});
+
+  @override
+  State<StatisticsPage> createState() => _StatisticsPageState();
+}
+
+class _StatisticsPageState extends State<StatisticsPage> {
+  double middle = 0;
+
+  Future<List<SpendingModel>> getCurrancy() async {
+    final days = await DaysSmartBudget.getDays();
+    final amount = await AmountSmartBudget.getAmount();
+    middle = amount / days;
+    return await HiveHelper.getSpendings();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +41,10 @@ class StatisticsPage extends StatelessWidget {
         title: 'Statistics',
       ),
       body: FutureBuilder(
-          future: HiveHelper.getSpendings(),
+          future: getCurrancy(),
           builder: (context, snap) {
             if (snap.connectionState == ConnectionState.done) {
+              print('snap.data! ${snap.data!}');
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: snap.data == null || snap.data!.isEmpty
@@ -48,7 +66,7 @@ class StatisticsPage extends StatelessWidget {
                       )
                     : ListView.separated(
                         shrinkWrap: true,
-                        itemCount: 16,
+                        itemCount: snap.data!.length,
                         separatorBuilder: (context, index) =>
                             const SizedBox(height: 12),
                         itemBuilder: (context, index) => Container(
@@ -65,8 +83,8 @@ class StatisticsPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Budget as of 17.01:",
-                                  style: TextStyle(
+                              Text("Budget as of ${snap.data![index].date}",
+                                  style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.white)),
@@ -74,8 +92,8 @@ class StatisticsPage extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Text("\$48",
-                                      style: TextStyle(
+                                  Text("\$$middle",
+                                      style: const TextStyle(
                                           fontSize: 40,
                                           fontWeight: FontWeight.w700,
                                           color: Colors.white)),
@@ -86,9 +104,10 @@ class StatisticsPage extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         color: AppColorsSmartBudget.colorFD5353,
                                         borderRadius: BorderRadius.circular(8)),
-                                    child: const Center(
-                                      child: Text("-\$30",
-                                          style: TextStyle(
+                                    child: Center(
+                                      child: Text(
+                                          "-\$${snap.data![index].amount}",
+                                          style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w700,
                                               color: Colors.white)),
@@ -101,9 +120,10 @@ class StatisticsPage extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         color: AppColorsSmartBudget.color5AE2A0,
                                         borderRadius: BorderRadius.circular(8)),
-                                    child: const Center(
-                                      child: Text("-\$30",
-                                          style: TextStyle(
+                                    child: Center(
+                                      child: Text(
+                                          "+\$${middle - snap.data![index].amount < 0 ? 0 : middle - snap.data![index].amount}",
+                                          style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w700,
                                               color: Colors.white)),
