@@ -1,15 +1,28 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import 'package:smart_budget_companion_113/model/hive_helper.dart';
-import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
-import 'package:smart_budget_companion_113/screen/smart_budget/smart_budget_screen.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 
-dynamic showSuccessDialog(BuildContext context, {required HellShow model}) {
+dynamic showSuccessDialog(
+  BuildContext context, {
+  required int dayly,
+  required int spent,
+  required int ostatok,
+  required String currancy,
+}) {
+  List<String> texts = [
+    'Great job!',
+    'Keep up the good work!',
+    'Congratulations!',
+  ];
+  Random random = Random();
+
+  int randomNumber = random.nextInt(3);
+
   return showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -34,7 +47,7 @@ dynamic showSuccessDialog(BuildContext context, {required HellShow model}) {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Keep up the good work!',
+                        texts[randomNumber],
                         style: AppTextStylesSmartBudget.s20W500(
                           color: Colors.white,
                         ),
@@ -53,7 +66,7 @@ dynamic showSuccessDialog(BuildContext context, {required HellShow model}) {
                             ),
                           ),
                           Text(
-                            '\$${model.dailyBudget.toInt()}',
+                            '$currancy$dayly',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: Colors.white,
                             ),
@@ -72,7 +85,7 @@ dynamic showSuccessDialog(BuildContext context, {required HellShow model}) {
                             ),
                           ),
                           Text(
-                            '\$${model.spent.toInt()}',
+                            '$currancy$spent',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: AppColorsSmartBudget.colorFD5353,
                             ),
@@ -86,12 +99,9 @@ dynamic showSuccessDialog(BuildContext context, {required HellShow model}) {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            '\$${(model.dailyBudget - model.spent).toInt()}',
+                            '$currancy$ostatok',
                             style: AppTextStylesSmartBudget.s40W700(
-                              color:
-                                  (model.dailyBudget - model.spent).toInt() < 0
-                                      ? Colors.red
-                                      : AppColorsSmartBudget.color5AE2A0,
+                              color: AppColorsSmartBudget.color5AE2A0,
                             ),
                           ),
                         ],
@@ -127,16 +137,10 @@ dynamic showSuccessDialog(BuildContext context, {required HellShow model}) {
             color: AppColorsSmartBudget.color5D87FF,
             onPress: () {
               Navigator.pop(context);
-              final time = DateTime.now();
-              HiveHelper.addBla(
-                SpendingModel(
-                  amount: '0',
-                  date: DateFormat('yyyy-MM-dd').format(time),
-                ),
-              );
             },
             text: 'Great!',
           ),
+          const SizedBox(height: 12),
         ],
       ),
     ),

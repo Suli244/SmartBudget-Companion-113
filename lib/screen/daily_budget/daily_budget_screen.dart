@@ -3,6 +3,7 @@ import 'package:smart_budget_companion_113/screen/daily_budget/widgets/key_board
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/premium/amount.dart';
+import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
 import 'package:smart_budget_companion_113/utils/premium/days.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 
@@ -45,7 +46,15 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
   @override
   void initState() {
     getDefaultData();
+    getCurrancy();
     super.initState();
+  }
+
+  String currancy = '';
+
+  getCurrancy() async {
+    currancy = await CurrancySmartBudget.getCurrancy();
+    setState(() {});
   }
 
   @override
@@ -91,7 +100,7 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
                 ? Row(
                     children: [
                       Text(
-                        'min \$100',
+                        'min ${currancy}100',
                         style: AppTextStylesSmartBudget.s16W400(
                           color: isLess100
                               ? AppColorsSmartBudget.colorFD5353
@@ -104,7 +113,7 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
                             color: Colors.white),
                       ),
                       Text(
-                        'max \$100 000',
+                        'max ${currancy}100 000',
                         style: AppTextStylesSmartBudget.s16W400(
                             color: isMore100000
                                 ? AppColorsSmartBudget.colorFD5353
@@ -137,7 +146,7 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
                             : Colors.white),
                 decoration: InputDecoration(
                   prefix: Text(
-                    '\$',
+                    currancy,
                     style: AppTextStylesSmartBudget.s40W700(
                         color: daysFocused
                             ? Colors.white.withOpacity(0.5)
