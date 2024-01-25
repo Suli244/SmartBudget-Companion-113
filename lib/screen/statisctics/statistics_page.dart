@@ -74,8 +74,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
                           margin: EdgeInsets.only(
                               top: index == 0 ? 16 : 0,
                               bottom: index == 16 ? 16 : 0),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 16),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 24.h, vertical: 16.h),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(24),
                               color: AppColorsSmartBudget.color5D87FF
@@ -84,8 +84,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Budget as of ${snap.data![index].date}",
-                                  style: const TextStyle(
-                                      fontSize: 16,
+                                  style: TextStyle(
+                                      fontSize: 16.h,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.white)),
                               const SizedBox(height: 12),
@@ -93,8 +93,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text("\$$middle",
-                                      style: const TextStyle(
-                                          fontSize: 40,
+                                      style: TextStyle(
+                                          fontSize: 40.h,
                                           fontWeight: FontWeight.w700,
                                           color: Colors.white)),
                                   const SizedBox(width: 4),
@@ -107,8 +107,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                     child: Center(
                                       child: Text(
                                           "-\$${snap.data![index].amount}",
-                                          style: const TextStyle(
-                                              fontSize: 16,
+                                          style: TextStyle(
+                                              fontSize: 16.h,
                                               fontWeight: FontWeight.w700,
                                               color: Colors.white)),
                                     ),
@@ -123,8 +123,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                     child: Center(
                                       child: Text(
                                           "+\$${middle - snap.data![index].amount < 0 ? 0 : middle - snap.data![index].amount}",
-                                          style: const TextStyle(
-                                              fontSize: 16,
+                                          style: TextStyle(
+                                              fontSize: 16.h,
                                               fontWeight: FontWeight.w700,
                                               color: Colors.white)),
                                     ),
