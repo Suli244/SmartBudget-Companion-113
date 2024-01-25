@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import 'package:smart_budget_companion_113/model/hive_helper.dart';
 import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/widgets/clear_container_widget.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/widgets/number_container_widget.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
+import 'package:smart_budget_companion_113/utils/date_format.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
+import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 
 class SpendingPage extends StatefulWidget {
@@ -21,15 +21,17 @@ class _SpendingPageState extends State<SpendingPage> {
   final TextEditingController amountController = TextEditingController();
   ValueNotifier<bool> isHideDot = ValueNotifier<bool>(false);
   final FocusNode _accFocusNode = FocusNode();
-  SpendingModel? model;
+  String currancy = '';
+
+  getCurrancy() async {
+    currancy = await CurrancySmartBudget.getCurrancy();
+    setState(() {});
+  }
+
   @override
   void initState() {
+    getCurrancy();
     super.initState();
-    _accFocusNode.requestFocus();
-    HiveHelper.getBla().then((value) {
-      model = value;
-      setState(() {});
-    });
   }
 
   @override
@@ -50,14 +52,11 @@ class _SpendingPageState extends State<SpendingPage> {
         actions: [
           IconButton(
             onPressed: () {
-              String amountNow = addStrings(
-                model?.amount ?? '0',
-                amountController.text,
-              );
               final time = DateTime.now();
               final actualModel = SpendingModel(
-                amount: amountNow,
-                date: DateFormat('yyyy-MM-dd').format(time),
+                amount: int.parse(amountController.text),
+                date: AppDateFromat.dateFormat.format(time),
+                id: DateTime.now().microsecondsSinceEpoch,
               );
               Navigator.pop(context, actualModel);
             },
@@ -90,7 +89,7 @@ class _SpendingPageState extends State<SpendingPage> {
                         AppTextStylesSmartBudget.s40W700(color: Colors.white),
                     decoration: InputDecoration(
                       prefix: Text(
-                        '\$',
+                        currancy,
                         style: AppTextStylesSmartBudget.s40W700(
                             color: Colors.white),
                       ),

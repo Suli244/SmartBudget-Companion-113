@@ -4,7 +4,13 @@ import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 
-showErrorDialog(BuildContext context) {
+showErrorDialog(
+  BuildContext context, {
+  required int dayly,
+  required int spent,
+  required int ostatok,
+  required String currancy,
+}) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -47,7 +53,7 @@ showErrorDialog(BuildContext context) {
                             ),
                           ),
                           Text(
-                            '\$50',
+                            '$currancy$dayly',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: Colors.white,
                             ),
@@ -66,7 +72,7 @@ showErrorDialog(BuildContext context) {
                             ),
                           ),
                           Text(
-                            '\$50',
+                            '$currancy$spent',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: AppColorsSmartBudget.colorFD5353,
                             ),
@@ -80,7 +86,7 @@ showErrorDialog(BuildContext context) {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            '-\$110',
+                            '$currancy$ostatok',
                             style: AppTextStylesSmartBudget.s40W700(
                               color: AppColorsSmartBudget.colorFD5353,
                             ),
@@ -102,6 +108,7 @@ showErrorDialog(BuildContext context) {
             },
             text: 'Ok',
           ),
+          const SizedBox(height: 12),
         ],
       ),
     ),
