@@ -35,10 +35,10 @@ class HiveHelper<T> {
   }
 
   static Future<void> removeSpending(SpendingModel model) async {
-    final box = Hive.isBoxOpen(boksName)
+    final boks = Hive.isBoxOpen(boksName)
         ? Hive.box<SpendingModel>(boksName)
         : await Hive.openBox<SpendingModel>(boksName);
-    final savedSpandings = box.values.toList();
+    final savedSpandings = boks.values.toList();
     for (var e in savedSpandings) {
       if (e.date == model.date) {
         e.amount -= model.amount;
