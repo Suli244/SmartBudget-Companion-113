@@ -249,7 +249,7 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
             ),
             const SizedBox(height: 22),
             if (amountFocused || daysFocused)
-              KeyBoardWidget(
+              KeiyBoartVeedgad(
                 isDay: daysFocused,
                 isAllNorm: isAllNorm,
                 onDone: () async {

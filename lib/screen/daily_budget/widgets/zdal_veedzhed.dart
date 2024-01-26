@@ -5,8 +5,8 @@ import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/spaces_budget.dart';
 
-class DoneContainerWidget extends StatelessWidget {
-  const DoneContainerWidget({
+class ZdalVeedzhed extends StatelessWidget {
+  const ZdalVeedzhed({
     super.key,
     required this.onDone,
     required this.isAllNorm,

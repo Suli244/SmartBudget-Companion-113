@@ -237,17 +237,17 @@ class KeyBoardWidgetV2 extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 7.toString(),
                       ),
                       const SizedBox(width: 8),
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 8.toString(),
                       ),
                       const SizedBox(width: 8),
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 9.toString(),
                       ),
@@ -256,17 +256,17 @@ class KeyBoardWidgetV2 extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 4.toString(),
                       ),
                       const SizedBox(width: 8),
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 5.toString(),
                       ),
                       const SizedBox(width: 8),
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 6.toString(),
                       ),
@@ -275,17 +275,17 @@ class KeyBoardWidgetV2 extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 1.toString(),
                       ),
                       const SizedBox(width: 8),
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 2.toString(),
                       ),
                       const SizedBox(width: 8),
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 3.toString(),
                       ),
@@ -298,7 +298,7 @@ class KeyBoardWidgetV2 extends StatelessWidget {
               child: Row(
                 children: [
                   const SizedBox(width: 8),
-                  ClirQardochka(
+                  KartaNazhatiya(
                     height: 280.h,
                     onTapClear: onClearOne,
                     child: Padding(
@@ -320,7 +320,7 @@ class KeyBoardWidgetV2 extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      NumberConteiner(
+                      NomerKonteiner(
                         onTapNumber: onTapNumber,
                         number: 0.toString(),
                         flex: 2,
@@ -331,7 +331,7 @@ class KeyBoardWidgetV2 extends StatelessWidget {
                             return Row(
                               children: [
                                 const SizedBox(width: 8),
-                                NumberConteiner(
+                                NomerKonteiner(
                                   onTapNumber: onTapNumber,
                                   number: '.',
                                 ),
@@ -348,7 +348,7 @@ class KeyBoardWidgetV2 extends StatelessWidget {
               child: Row(
                 children: [
                   const SizedBox(width: 8),
-                  ClirQardochka(
+                  KartaNazhatiya(
                     onTapClear: onClearAll,
                     child: Text(
                       'C',

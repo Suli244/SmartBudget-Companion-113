@@ -9,14 +9,14 @@ import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/utils/xzzz/first_open.dart';
 
-class EnterScreen extends StatefulWidget {
-  const EnterScreen({Key? key}) : super(key: key);
+class NazhalPeige extends StatefulWidget {
+  const NazhalPeige({Key? key}) : super(key: key);
 
   @override
-  State<EnterScreen> createState() => _EnterScreenState();
+  State<NazhalPeige> createState() => _NazhalPeigeState();
 }
 
-class _EnterScreenState extends State<EnterScreen> {
+class _NazhalPeigeState extends State<NazhalPeige> {
   @override
   void initState() {
     toStartOnBoar();

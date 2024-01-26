@@ -5,8 +5,8 @@ import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/widgets/spaces_budget.dart';
 
-class NumberConteiner extends StatelessWidget {
-  const NumberConteiner({
+class NomerKonteiner extends StatelessWidget {
+  const NomerKonteiner({
     super.key,
     required this.onTapNumber,
     required this.number,

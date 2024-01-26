@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           highlightColor: Colors.transparent,
         ),
       ),
-      child: const EnterScreen(),
+      child: const NazhalPeige(),
     );
   }
 }

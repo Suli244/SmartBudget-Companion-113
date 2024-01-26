@@ -88,45 +88,45 @@ class _NastrPrilState extends State<NastrPril> {
                 ),
               ],
             ),
-            SettingsItemwidget(
+            NastrAitem(
               title: 'Privacy Policy',
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const WebBlueScopeNews(
+                    builder: (context) => const PerehodPoSsylke(
                       title: 'Privacy policy',
-                      url: DocFFSmartBudget.prPol,
+                      ssylka: DocFFSmartBudget.prPol,
                     ),
                   ),
                 );
               },
               top: 14,
             ),
-            SettingsItemwidget(
+            NastrAitem(
               title: 'Terms of Use',
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const WebBlueScopeNews(
+                    builder: (context) => const PerehodPoSsylke(
                       title: 'Terms of use',
-                      url: DocFFSmartBudget.terUse,
+                      ssylka: DocFFSmartBudget.terUse,
                     ),
                   ),
                 );
               },
               top: 14,
             ),
-            SettingsItemwidget(
+            NastrAitem(
               title: 'Support',
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const WebBlueScopeNews(
+                    builder: (context) => const PerehodPoSsylke(
                       title: 'Support',
-                      url: DocFFSmartBudget.supporto,
+                      ssylka: DocFFSmartBudget.supporto,
                     ),
                   ),
                 );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SettingsItemwidget extends StatelessWidget {
-  const SettingsItemwidget(
+class NastrAitem extends StatelessWidget {
+  const NastrAitem(
       {super.key, required this.title, required this.onTap, required this.top});
 
   final String title;

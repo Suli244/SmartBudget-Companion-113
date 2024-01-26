@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebBlueScopeNews extends StatefulWidget {
-  final String url;
+class PerehodPoSsylke extends StatefulWidget {
+  final String ssylka;
   final String title;
 
-  const WebBlueScopeNews({
+  const PerehodPoSsylke({
     Key? key,
     required this.title,
-    required this.url,
+    required this.ssylka,
   }) : super(key: key);
 
   @override
-  State<WebBlueScopeNews> createState() => _WebBlueScopeNewsState();
+  State<PerehodPoSsylke> createState() => _PerehodPoSsylkeState();
 }
 
-class _WebBlueScopeNewsState extends State<WebBlueScopeNews> {
+class _PerehodPoSsylkeState extends State<PerehodPoSsylke> {
   late WebViewController controller;
   @override
   void initState() {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse(widget.url));
+      ..loadRequest(Uri.parse(widget.ssylka));
     super.initState();
   }
 

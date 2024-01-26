@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 
-class OnboardingItemWidget extends StatelessWidget {
-  const OnboardingItemWidget({
+class PokazPrilozheniyaPrimer extends StatelessWidget {
+  const PokazPrilozheniyaPrimer({
     super.key,
     required this.title,
     required this.image,
