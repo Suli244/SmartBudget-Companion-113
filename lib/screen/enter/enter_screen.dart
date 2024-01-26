@@ -55,9 +55,9 @@ class _NazhalPeigeState extends State<NazhalPeige> {
       );
       await Future.delayed(const Duration(seconds: 8));
       try {
-        final InAppReview inAppReview = InAppReview.instance;
-        if (await inAppReview.isAvailable()) {
-          inAppReview.requestReview();
+        final InAppReview eenPrilProver = InAppReview.instance;
+        if (await eenPrilProver.isAvailable()) {
+          eenPrilProver.requestReview();
         }
       } catch (e) {
         throw Exception(e);

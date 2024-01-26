@@ -4,12 +4,12 @@ import 'package:hive/hive.dart';
 import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 
 class HiveHelper<T> {
-  static const String boxName = 'smartBudget';
+  static const String boksName = 'smartBudget';
 
   static Future<void> addSpending(SpendingModel model) async {
-    final boks = Hive.isBoxOpen(boxName)
-        ? Hive.box<SpendingModel>(boxName)
-        : await Hive.openBox<SpendingModel>(boxName);
+    final boks = Hive.isBoxOpen(boksName)
+        ? Hive.box<SpendingModel>(boksName)
+        : await Hive.openBox<SpendingModel>(boksName);
 
     final savedSpandings = boks.values.toList();
 
@@ -28,16 +28,16 @@ class HiveHelper<T> {
   }
 
   static Future<List<SpendingModel>> getSpendings() async {
-    final boks = Hive.isBoxOpen(boxName)
-        ? Hive.box<SpendingModel>(boxName)
-        : await Hive.openBox<SpendingModel>(boxName);
+    final boks = Hive.isBoxOpen(boksName)
+        ? Hive.box<SpendingModel>(boksName)
+        : await Hive.openBox<SpendingModel>(boksName);
     return boks.values.toList();
   }
 
   static Future<void> removeSpending(SpendingModel model) async {
-    final box = Hive.isBoxOpen(boxName)
-        ? Hive.box<SpendingModel>(boxName)
-        : await Hive.openBox<SpendingModel>(boxName);
+    final box = Hive.isBoxOpen(boksName)
+        ? Hive.box<SpendingModel>(boksName)
+        : await Hive.openBox<SpendingModel>(boksName);
     final savedSpandings = box.values.toList();
     for (var e in savedSpandings) {
       if (e.date == model.date) {
@@ -48,9 +48,9 @@ class HiveHelper<T> {
   }
 
   static Future<void> clear() async {
-    final boks = Hive.isBoxOpen(boxName)
-        ? Hive.box<SpendingModel>(boxName)
-        : await Hive.openBox<SpendingModel>(boxName);
+    final boks = Hive.isBoxOpen(boksName)
+        ? Hive.box<SpendingModel>(boksName)
+        : await Hive.openBox<SpendingModel>(boksName);
     boks.clear();
   }
 }
