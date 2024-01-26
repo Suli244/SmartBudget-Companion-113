@@ -5,16 +5,16 @@ import 'package:smart_budget_companion_113/screen/onboarding/onboarding_screen.d
 import 'package:smart_budget_companion_113/screen/smart_budget/smart_budget_screen.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
-import 'package:smart_budget_companion_113/utils/premium/first_open.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/first_open.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class EnterScreen extends StatefulWidget {
+  const EnterScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<EnterScreen> createState() => _EnterScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _EnterScreenState extends State<EnterScreen> {
   @override
   void initState() {
     toStartOnBoar();
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   toStartOnBoar() async {
     await Future.delayed(const Duration(milliseconds: 1450));
-    final isFirst = await FirstOpenSmartBudget.getFirstOpen();
+    final isFirst = await FirstOpenSmartBudget.getFirstOpenSmartBudget();
     if (!isFirst) {
       Navigator.pushReplacement(
         context,

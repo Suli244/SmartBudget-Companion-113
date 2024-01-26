@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
-import 'package:smart_budget_companion_113/widgets/spaces.dart';
+import 'package:smart_budget_companion_113/widgets/spaces_budget.dart';
 
 class NumberConteiner extends StatelessWidget {
   const NumberConteiner({
@@ -27,7 +28,7 @@ class NumberConteiner extends StatelessWidget {
         },
         child: Container(
           alignment: Alignment.center,
-          height: 72,
+          height: 72.h,
           width: context.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),

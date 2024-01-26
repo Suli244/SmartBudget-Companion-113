@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/widgets/clear_container_widget.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/widgets/done_container_widget.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/widgets/number_container_widget.dart';
@@ -21,7 +22,7 @@ class KeyBoardWidget extends StatelessWidget {
   final Function() onClearAll;
   final Function(String number) onTapNumber;
   final Function() onDone;
-  
+
   final bool isAllNorm;
   final bool isDay;
 
@@ -97,19 +98,19 @@ class KeyBoardWidget extends StatelessWidget {
                         onTapNumber: onTapNumber,
                         number: 1.toString(),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8.w),
                       NumberConteiner(
                         onTapNumber: onTapNumber,
                         number: 2.toString(),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8.w),
                       NumberConteiner(
                         onTapNumber: onTapNumber,
                         number: 3.toString(),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   Row(
                     children: [
                       NumberConteiner(
@@ -139,7 +140,7 @@ class KeyBoardWidget extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   DoneContainerWidget(
                     isAllNorm: isAllNorm,
                     onDone: onDone,

@@ -30,7 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  apphud: ^2.2.6
   flutter_screenutil: ^5.9.0
   shared_preferences: ^2.0.15
   webview_flutter: ^4.4.2

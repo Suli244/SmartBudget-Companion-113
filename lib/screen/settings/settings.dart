@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
-import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/currancy.dart';
 import 'package:smart_budget_companion_113/utils/urls.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
@@ -96,7 +96,7 @@ class _SettingsState extends State<Settings> {
                   MaterialPageRoute(
                     builder: (context) => const WebBlueScopeNews(
                       title: 'Privacy policy',
-                      url: DocFFSmartBudget.pP,
+                      url: DocFFSmartBudget.prPol,
                     ),
                   ),
                 );
@@ -111,7 +111,7 @@ class _SettingsState extends State<Settings> {
                   MaterialPageRoute(
                     builder: (context) => const WebBlueScopeNews(
                       title: 'Terms of use',
-                      url: DocFFSmartBudget.tUse,
+                      url: DocFFSmartBudget.terUse,
                     ),
                   ),
                 );
@@ -120,7 +120,17 @@ class _SettingsState extends State<Settings> {
             ),
             SettingsItemwidget(
               title: 'Support',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const WebBlueScopeNews(
+                      title: 'Support',
+                      url: DocFFSmartBudget.supporto,
+                    ),
+                  ),
+                );
+              },
               top: 14,
             ),
           ],

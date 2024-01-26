@@ -4,7 +4,7 @@ import 'package:smart_budget_companion_113/screen/smart_budget/smart_budget_scre
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
-import 'package:smart_budget_companion_113/utils/premium/first_open.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/first_open.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 import 'package:smart_budget_companion_113/widgets/onboarding_item_widget.dart';
 
@@ -57,7 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               color: AppColorsSmartBudget.color5883FF,
               onPress: () async {
                 if (currantPage == 2) {
-                  await FirstOpenSmartBudget.setFirstOpen();
+                  await FirstOpenSmartBudget.setFirstOpenSmartBudget();
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

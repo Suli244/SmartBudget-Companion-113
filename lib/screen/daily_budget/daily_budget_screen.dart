@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/widgets/key_board_widget.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
-import 'package:smart_budget_companion_113/utils/premium/amount.dart';
-import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
-import 'package:smart_budget_companion_113/utils/premium/days.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/amount.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/currancy.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/days.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
 
 class DailyBudgetScreen extends StatefulWidget {

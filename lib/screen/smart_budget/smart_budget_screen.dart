@@ -6,18 +6,18 @@ import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/daily_budget_screen.dart';
 import 'package:smart_budget_companion_113/screen/settings/settings.dart';
 import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_error_dialog.dart';
-import 'package:smart_budget_companion_113/screen/statisctics/statistics_page.dart';
 import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_success_dialog.dart';
 import 'package:smart_budget_companion_113/screen/spendings/spendings_page.dart';
+import 'package:smart_budget_companion_113/screen/statisctics/statistics_page.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/date_format.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
-import 'package:smart_budget_companion_113/utils/premium/amount.dart';
-import 'package:smart_budget_companion_113/utils/premium/currancy.dart';
-import 'package:smart_budget_companion_113/utils/premium/days.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/amount.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/currancy.dart';
+import 'package:smart_budget_companion_113/utils/xzzz/days.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
-import 'package:smart_budget_companion_113/widgets/spaces.dart';
+import 'package:smart_budget_companion_113/widgets/spaces_budget.dart';
 
 class SmartBudgetScreen extends StatefulWidget {
   const SmartBudgetScreen({super.key});
@@ -302,12 +302,14 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
   int totalDays() {
     int savedDays = 0;
     if (spendings.isNotEmpty) {
-      if (spendings.last.date ==
+      if (spendings.last.date !=
           AppDateFromat.dateFormat.format(DateTime.now())) {
         savedDays = days - spendings.length + 1;
       } else {
         savedDays = days - spendings.length;
       }
+    } else {
+      savedDays = days;
     }
     return savedDays;
   }

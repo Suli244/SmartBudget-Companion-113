@@ -1,4 +1,3 @@
-import 'package:apphud/apphud.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,14 +6,12 @@ import 'package:hive/hive.dart';
 import 'package:path/path.dart' as path_helper;
 import 'package:path_provider/path_provider.dart';
 import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
-import 'package:smart_budget_companion_113/screen/splash/splash_screen.dart';
+import 'package:smart_budget_companion_113/screen/enter/enter_screen.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
-import 'package:smart_budget_companion_113/utils/urls.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Apphud.start(apiKey: DocFFSmartBudget.apphudApiKey);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Hive.registerAdapter(SpendingModelAdapter());
   runApp(const MyApp());
@@ -43,7 +40,7 @@ class MyApp extends StatelessWidget {
           highlightColor: Colors.transparent,
         ),
       ),
-      child: const SplashScreen(),
+      child: const EnterScreen(),
     );
   }
 }
