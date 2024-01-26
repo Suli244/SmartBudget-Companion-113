@@ -19,9 +19,9 @@ dynamic showSuccessDialog(
     'Keep up the good work!',
     'Congratulations!',
   ];
-  Random random = Random();
+  Random ranintom = Random();
 
-  int randomNumber = random.nextInt(3);
+  int randomNumber = ranintom.nextInt(3);
 
   return showDialog(
     context: context,

@@ -12,14 +12,14 @@ class SpendingModelAdapter extends TypeAdapter<SpendingModel> {
 
   @override
   SpendingModel read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    final numOvVieltz = reader.readByte();
+    final vieltz = <int, dynamic>{
+      for (int ii = 0; ii < numOvVieltz; ii++) reader.readByte(): reader.read(),
     };
     return SpendingModel(
-      amount: fields[0] as int,
-      date: fields[1] as String,
-      id: fields[2] as int,
+      amount: vieltz[0] as int,
+      date: vieltz[1] as String,
+      id: vieltz[2] as int,
     );
   }
 

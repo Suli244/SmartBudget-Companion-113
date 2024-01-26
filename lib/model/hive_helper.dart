@@ -7,11 +7,11 @@ class HiveHelper<T> {
   static const String boxName = 'smartBudget';
 
   static Future<void> addSpending(SpendingModel model) async {
-    final box = Hive.isBoxOpen(boxName)
+    final boks = Hive.isBoxOpen(boxName)
         ? Hive.box<SpendingModel>(boxName)
         : await Hive.openBox<SpendingModel>(boxName);
 
-    final savedSpandings = box.values.toList();
+    final savedSpandings = boks.values.toList();
 
     if (savedSpandings.isNotEmpty) {
       for (var e in savedSpandings) {
@@ -19,19 +19,19 @@ class HiveHelper<T> {
           e.amount += model.amount;
           e.save();
         } else {
-          box.add(model);
+          boks.add(model);
         }
       }
     } else {
-      box.add(model);
+      boks.add(model);
     }
   }
 
   static Future<List<SpendingModel>> getSpendings() async {
-    final box = Hive.isBoxOpen(boxName)
+    final boks = Hive.isBoxOpen(boxName)
         ? Hive.box<SpendingModel>(boxName)
         : await Hive.openBox<SpendingModel>(boxName);
-    return box.values.toList();
+    return boks.values.toList();
   }
 
   static Future<void> removeSpending(SpendingModel model) async {
@@ -48,9 +48,9 @@ class HiveHelper<T> {
   }
 
   static Future<void> clear() async {
-    final box = Hive.isBoxOpen(boxName)
+    final boks = Hive.isBoxOpen(boxName)
         ? Hive.box<SpendingModel>(boxName)
         : await Hive.openBox<SpendingModel>(boxName);
-    box.clear();
+    boks.clear();
   }
 }
