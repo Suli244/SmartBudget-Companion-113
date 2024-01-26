@@ -33,16 +33,16 @@ class __InformatsiyaProPrilozhenieStateState extends State<InformatsiyaProPriloz
               });
             },
             children: const [
-              OnboardingItemWidget(
+              PokazPrilozheniyaPrimer(
                 title: 'Track your budget with\nconvinient interface',
                 image: AppImages.onboardingOne,
               ),
-              OnboardingItemWidget(
+              PokazPrilozheniyaPrimer(
                 title:
                     'Save the amount you need in\norder to achieve your goals',
                 image: AppImages.onboardingTwo,
               ),
-              OnboardingItemWidget(
+              PokazPrilozheniyaPrimer(
                 title:
                     'Seize financial freedom\neffortlessly. Get started now!',
                 image: AppImages.onboardingTrhee,
@@ -61,7 +61,7 @@ class __InformatsiyaProPrilozhenieStateState extends State<InformatsiyaProPriloz
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SmartBudgetScreen(),
+                      builder: (context) => const UmnyiDengiStiklo(),
                     ),
                     (protected) => false,
                   );

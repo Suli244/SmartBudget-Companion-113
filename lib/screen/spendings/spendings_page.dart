@@ -52,13 +52,15 @@ class _SpendingPageState extends State<SpendingPage> {
         actions: [
           IconButton(
             onPressed: () {
-              final time = DateTime.now();
-              final actualModel = SpendingModel(
-                amount: int.parse(amountController.text),
-                date: AppDateFromat.dateFormat.format(time),
-                id: DateTime.now().microsecondsSinceEpoch,
-              );
-              Navigator.pop(context, actualModel);
+              try {
+                final time = DateTime.now();
+                final actualModel = SpendingModel(
+                  amount: int.parse(amountController.text),
+                  date: AppDateFromat.dateFormat.format(time),
+                  id: DateTime.now().microsecondsSinceEpoch,
+                );
+                Navigator.pop(context, actualModel);
+              } catch (e) {}
             },
             icon: const Icon(Icons.check,
                 color: AppColorsSmartBudget.color5D87FF),

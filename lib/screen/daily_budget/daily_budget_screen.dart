@@ -262,61 +262,64 @@ class _DailyBudgetScreenState extends State<DailyBudgetScreen> {
                   Navigator.pop(context);
                 },
                 onClearOne: () {
-                  if (amountFocused) {
-                    amountController.text = amountController.text
-                        .substring(0, amountController.text.length - 1);
-                    final value = amountController.text;
-                    if (value.isNotEmpty) {
-                      final formatted = formatNumber(
-                        int.parse(
-                          value.replaceAll(' ', ''),
-                        ),
-                      );
-                      if (int.parse(value.replaceAll(' ', '')) < 100) {
-                        isLess100 = true;
-                        setState(() {});
-                      } else if (int.parse(value.replaceAll(' ', '')) >= 100) {
-                        isLess100 = false;
-                        setState(() {});
-                      }
-                      if (int.parse(value.replaceAll(' ', '')) > 100000) {
-                        isMore100000 = true;
-                        setState(() {});
-                      } else if (int.parse(value.replaceAll(' ', '')) <=
-                          100000) {
-                        isMore100000 = false;
-                        setState(() {});
-                      }
+                  try {
+                    if (amountFocused) {
+                      amountController.text = amountController.text
+                          .substring(0, amountController.text.length - 1);
+                      final value = amountController.text;
+                      if (value.isNotEmpty) {
+                        final formatted = formatNumber(
+                          int.parse(
+                            value.replaceAll(' ', ''),
+                          ),
+                        );
+                        if (int.parse(value.replaceAll(' ', '')) < 100) {
+                          isLess100 = true;
+                          setState(() {});
+                        } else if (int.parse(value.replaceAll(' ', '')) >=
+                            100) {
+                          isLess100 = false;
+                          setState(() {});
+                        }
+                        if (int.parse(value.replaceAll(' ', '')) > 100000) {
+                          isMore100000 = true;
+                          setState(() {});
+                        } else if (int.parse(value.replaceAll(' ', '')) <=
+                            100000) {
+                          isMore100000 = false;
+                          setState(() {});
+                        }
 
-                      amountController.text = formatted.toString();
+                        amountController.text = formatted.toString();
+                      }
                     }
-                  }
-                  if (daysFocused) {
-                    daysController.text = daysController.text
-                        .substring(0, daysController.text.length - 1);
-                    final value = daysController.text;
-                    if (value.isNotEmpty) {
-                      final day = int.parse(value);
-                      if (day < 1) {
+                    if (daysFocused) {
+                      daysController.text = daysController.text
+                          .substring(0, daysController.text.length - 1);
+                      final value = daysController.text;
+                      if (value.isNotEmpty) {
+                        final day = int.parse(value);
+                        if (day < 1) {
+                          isDayLess1 = true;
+                          setState(() {});
+                        } else if (day >= 1) {
+                          isDayLess1 = false;
+                          setState(() {});
+                        }
+
+                        if (day > 45) {
+                          isDayMore45 = true;
+                          setState(() {});
+                        } else if (day <= 45) {
+                          isDayMore45 = false;
+                          setState(() {});
+                        }
+                      } else {
                         isDayLess1 = true;
                         setState(() {});
-                      } else if (day >= 1) {
-                        isDayLess1 = false;
-                        setState(() {});
                       }
-
-                      if (day > 45) {
-                        isDayMore45 = true;
-                        setState(() {});
-                      } else if (day <= 45) {
-                        isDayMore45 = false;
-                        setState(() {});
-                      }
-                    } else {
-                      isDayLess1 = true;
-                      setState(() {});
                     }
-                  }
+                  } catch (e) {}
                 },
                 onClearAll: () {
                   if (amountFocused) {
