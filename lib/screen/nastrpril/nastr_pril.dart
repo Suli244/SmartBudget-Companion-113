@@ -7,7 +7,7 @@ import 'package:smart_budget_companion_113/utils/urls.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar_widget.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 import 'package:smart_budget_companion_113/widgets/settings_item_widget.dart';
-import 'package:smart_budget_companion_113/widgets/web_view_news.dart';
+import 'package:smart_budget_companion_113/widgets/perehod_po_ssylke.dart';
 
 class NastrPril extends StatefulWidget {
   const NastrPril({super.key});
