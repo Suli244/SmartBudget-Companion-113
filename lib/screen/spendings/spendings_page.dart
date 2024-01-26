@@ -298,7 +298,7 @@ class KeyBoardWidgetV2 extends StatelessWidget {
               child: Row(
                 children: [
                   const SizedBox(width: 8),
-                  ClearConteiner(
+                  ClirQardochka(
                     height: 280.h,
                     onTapClear: onClearOne,
                     child: Padding(
@@ -348,7 +348,7 @@ class KeyBoardWidgetV2 extends StatelessWidget {
               child: Row(
                 children: [
                   const SizedBox(width: 8),
-                  ClearConteiner(
+                  ClirQardochka(
                     onTapClear: onClearAll,
                     child: Text(
                       'C',

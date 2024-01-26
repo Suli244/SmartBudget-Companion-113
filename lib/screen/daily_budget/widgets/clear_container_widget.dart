@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/widgets/spaces_budget.dart';
 
-class ClearConteiner extends StatelessWidget {
-  const ClearConteiner({
+class ClirQardochka extends StatelessWidget {
+  const ClirQardochka({
     super.key,
     required this.onTapClear,
     required this.child,
