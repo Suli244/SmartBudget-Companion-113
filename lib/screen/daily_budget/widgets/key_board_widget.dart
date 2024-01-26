@@ -47,7 +47,7 @@ class KeyBoardWidget extends StatelessWidget {
               number: 9.toString(),
             ),
             const SizedBox(width: 8),
-            ClearConteiner(
+            ClirQardochka(
               onTapClear: onClearOne,
               child: Padding(
                 padding: const EdgeInsets.all(15),
@@ -74,7 +74,7 @@ class KeyBoardWidget extends StatelessWidget {
               number: 6.toString(),
             ),
             const SizedBox(width: 8),
-            ClearConteiner(
+            ClirQardochka(
               onTapClear: onClearAll,
               child: Text(
                 'C',

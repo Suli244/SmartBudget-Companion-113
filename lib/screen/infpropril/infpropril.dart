@@ -8,16 +8,16 @@ import 'package:smart_budget_companion_113/utils/xzzz/first_open.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 import 'package:smart_budget_companion_113/widgets/onboarding_item_widget.dart';
 
-class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+class InformatsiyaProPrilozhenie extends StatefulWidget {
+  const InformatsiyaProPrilozhenie({super.key});
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  State<InformatsiyaProPrilozhenie> createState() => __InformatsiyaProPrilozhenieStateState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController controller = PageController();
-  int currantPage = 0;
+class __InformatsiyaProPrilozhenieStateState extends State<InformatsiyaProPrilozhenie> {
+  final PageController controlllier = PageController();
+  int cyrrendPagePerem = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           PageView(
             physics: const ClampingScrollPhysics(),
-            controller: controller,
+            controller: controlllier,
             onPageChanged: (value) {
               setState(() {
-                currantPage = value;
+                cyrrendPagePerem = value;
               });
             },
             children: const [
@@ -56,7 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: CustomButtonSmartBudget(
               color: AppColorsSmartBudget.color5883FF,
               onPress: () async {
-                if (currantPage == 2) {
+                if (cyrrendPagePerem == 2) {
                   await FirstOpenSmartBudget.setFirstOpenSmartBudget();
                   Navigator.pushAndRemoveUntil(
                     context,
@@ -66,13 +66,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     (protected) => false,
                   );
                 } else {
-                  controller.nextPage(
+                  controlllier.nextPage(
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.ease,
                   );
                 }
               },
-              text: currantPage == 2 ? 'Let’s go' : 'Next',
+              text: cyrrendPagePerem == 2 ? 'Let’s go' : 'Next',
               radius: 24,
               height: 54,
               textStyle: AppTextStylesSmartBudget.s17Wbold(color: Colors.white),

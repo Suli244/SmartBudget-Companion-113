@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_budget_companion_113/model/hive_helper.dart';
 import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 import 'package:smart_budget_companion_113/screen/daily_budget/daily_budget_screen.dart';
-import 'package:smart_budget_companion_113/screen/settings/settings.dart';
+import 'package:smart_budget_companion_113/screen/nastrpril/nastr_pril.dart';
 import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_error_dialog.dart';
 import 'package:smart_budget_companion_113/screen/smart_budget/widgets/show_success_dialog.dart';
 import 'package:smart_budget_companion_113/screen/spendings/spendings_page.dart';
@@ -19,21 +19,21 @@ import 'package:smart_budget_companion_113/utils/xzzz/days.dart';
 import 'package:smart_budget_companion_113/widgets/custom_app_bar_widget.dart';
 import 'package:smart_budget_companion_113/widgets/spaces_budget.dart';
 
-class SmartBudgetScreen extends StatefulWidget {
-  const SmartBudgetScreen({super.key});
+class UmnyiDengiStiklo extends StatefulWidget {
+  const UmnyiDengiStiklo({super.key});
 
   @override
-  State<SmartBudgetScreen> createState() => _SmartBudgetScreenState();
+  State<UmnyiDengiStiklo> createState() => _UmnyiDengiStikloState();
 }
 
-class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
-  String currancy = '';
+class _UmnyiDengiStikloState extends State<UmnyiDengiStiklo> {
+  String cyrrensy = '';
   int days = 0;
   int amount = 0;
   List<SpendingModel> spendings = [];
 
   Future<void> getCurrancy() async {
-    currancy = await CurrancySmartBudget.getCurrancy();
+    cyrrensy = await CurrancySmartBudget.getCurrancy();
     days = await DaysSmartBudget.getDays();
     amount = await AmountSmartBudget.getAmount();
     await getSpandings();
@@ -61,7 +61,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
             dayly: daylyAmoint(),
             spent: amountForToDay(),
             ostatok: ostatokAmount(),
-            currancy: currancy,
+            currancy: cyrrensy,
           );
         } else {
           showSuccessDialog(
@@ -69,7 +69,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
             dayly: daylyAmoint(),
             spent: amountForToDay(),
             ostatok: ostatokAmount(),
-            currancy: currancy,
+            currancy: cyrrensy,
           );
         }
       }
@@ -101,7 +101,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
               await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Settings(),
+                  builder: (context) => const NastrPril(),
                 ),
               );
               await getCurrancy();
@@ -155,7 +155,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '$currancy${totalAmount()} for ${totalDays()} days',
+                        '$cyrrensy${totalAmount()} for ${totalDays()} days',
                         style: AppTextStylesSmartBudget.s12W500(
                           color: AppColorsSmartBudget.color5AE2A0,
                         ),
@@ -165,7 +165,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                     Row(
                       children: [
                         Text(
-                          '$currancy${ostatokAmount()}',
+                          '$cyrrensy${ostatokAmount()}',
                           style: AppTextStylesSmartBudget.s40W700(
                             color: Colors.white,
                           ),
@@ -181,7 +181,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
-                            '$currancy${amountForToDay() > 0 ? '-${amountForToDay()}' : '0'}',
+                            '$cyrrensy${amountForToDay() > 0 ? '-${amountForToDay()}' : '0'}',
                             style: AppTextStylesSmartBudget.s16W700(
                               color: Colors.white,
                             ),
@@ -191,7 +191,7 @@ class _SmartBudgetScreenState extends State<SmartBudgetScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Your daily budget - $currancy${daylyAmoint()}',
+                      'Your daily budget - $cyrrensy${daylyAmoint()}',
                       style: AppTextStylesSmartBudget.s20W500(
                         color: Colors.white,
                       ),

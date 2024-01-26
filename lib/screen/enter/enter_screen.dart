@@ -1,7 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:smart_budget_companion_113/screen/onboarding/onboarding_screen.dart';
+import 'package:smart_budget_companion_113/screen/infpropril/infpropril.dart';
 import 'package:smart_budget_companion_113/screen/smart_budget/smart_budget_screen.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
@@ -48,7 +50,7 @@ class _EnterScreenState extends State<EnterScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const OnboardingScreen(),
+          builder: (context) => const InformatsiyaProPrilozhenie(),
         ),
       );
       await Future.delayed(const Duration(seconds: 8));
@@ -64,7 +66,7 @@ class _EnterScreenState extends State<EnterScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const SmartBudgetScreen(),
+          builder: (context) => const UmnyiDengiStiklo(),
         ),
       );
     }

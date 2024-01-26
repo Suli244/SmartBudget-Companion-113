@@ -9,14 +9,14 @@ import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 import 'package:smart_budget_companion_113/widgets/settings_item_widget.dart';
 import 'package:smart_budget_companion_113/widgets/web_view_news.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({super.key});
+class NastrPril extends StatefulWidget {
+  const NastrPril({super.key});
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<NastrPril> createState() => _NastrPrilState();
 }
 
-class _SettingsState extends State<Settings> {
+class _NastrPrilState extends State<NastrPril> {
   String currancy = '';
 
   getCurrancy() async {
