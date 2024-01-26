@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
-import 'package:smart_budget_companion_113/widgets/app_indicator.dart';
+import 'package:smart_budget_companion_113/widgets/indicator_widget.dart';
 
 class CustomButtonSmartBudget extends StatelessWidget {
   const CustomButtonSmartBudget({

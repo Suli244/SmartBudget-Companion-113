@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
+import 'package:smart_budget_companion_113/widgets/custom_app_bar_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebBlueScopeNews extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/date_format.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/utils/xzzz/currancy.dart';
-import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
+import 'package:smart_budget_companion_113/widgets/custom_app_bar_widget.dart';
 
 class SpendingPage extends StatefulWidget {
   const SpendingPage({super.key});

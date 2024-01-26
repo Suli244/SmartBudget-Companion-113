@@ -4,7 +4,7 @@ import 'package:smart_budget_companion_113/style/app_colors.dart';
 import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/xzzz/currancy.dart';
 import 'package:smart_budget_companion_113/utils/urls.dart';
-import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
+import 'package:smart_budget_companion_113/widgets/custom_app_bar_widget.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 import 'package:smart_budget_companion_113/widgets/settings_item_widget.dart';
 import 'package:smart_budget_companion_113/widgets/web_view_news.dart';

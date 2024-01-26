@@ -16,7 +16,7 @@ import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/utils/xzzz/amount.dart';
 import 'package:smart_budget_companion_113/utils/xzzz/currancy.dart';
 import 'package:smart_budget_companion_113/utils/xzzz/days.dart';
-import 'package:smart_budget_companion_113/widgets/custom_app_bar.dart';
+import 'package:smart_budget_companion_113/widgets/custom_app_bar_widget.dart';
 import 'package:smart_budget_companion_113/widgets/spaces_budget.dart';
 
 class SmartBudgetScreen extends StatefulWidget {

@@ -4,6 +4,7 @@ import 'package:smart_budget_companion_113/style/app_text_styles.dart';
 import 'package:smart_budget_companion_113/utils/image/app_images.dart';
 import 'package:smart_budget_companion_113/widgets/custom_button.dart';
 
+
 showErrorDialog(
   BuildContext context, {
   required int dayly,
