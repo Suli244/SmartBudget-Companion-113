@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:path/path.dart' as path_helper;
 import 'package:path_provider/path_provider.dart';
+import 'package:smart_budget_companion_113/budget/budget_local_dto.dart';
 import 'package:smart_budget_companion_113/model/smart_budget_model.dart';
 import 'package:smart_budget_companion_113/screen/enter/enter_screen.dart';
 import 'package:smart_budget_companion_113/style/app_colors.dart';
@@ -14,6 +15,7 @@ void main() async {
   await Hive.initFlutter();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Hive.registerAdapter(SpendingModelAdapter());
+  Hive.registerAdapter(BudgetLocalDtoAdapter());
   runApp(const MyApp());
 }
 

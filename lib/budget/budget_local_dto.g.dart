@@ -1,38 +1,41 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'smart_budget_model.dart';
+part of 'budget_local_dto.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SpendingModelAdapter extends TypeAdapter<SpendingModel> {
+class BudgetLocalDtoAdapter extends TypeAdapter<BudgetLocalDto> {
   @override
-  final int typeId = 0;
+  final int typeId = 4;
 
   @override
-  SpendingModel read(BinaryReader reader) {
+  BudgetLocalDto read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SpendingModel(
-      amount: fields[0] as int,
-      date: fields[1] as String,
-      id: fields[2] as int,
+    return BudgetLocalDto(
+      strt: fields[3] as bool,
+      cab: fields[2] as String,
+      log: fields[1] as String,
+      reg: fields[0] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, SpendingModel obj) {
+  void write(BinaryWriter writer, BudgetLocalDto obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.amount)
+      ..write(obj.reg)
       ..writeByte(1)
-      ..write(obj.date)
+      ..write(obj.log)
       ..writeByte(2)
-      ..write(obj.id);
+      ..write(obj.cab)
+      ..writeByte(3)
+      ..write(obj.strt);
   }
 
   @override
@@ -41,7 +44,7 @@ class SpendingModelAdapter extends TypeAdapter<SpendingModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SpendingModelAdapter &&
+      other is BudgetLocalDtoAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
